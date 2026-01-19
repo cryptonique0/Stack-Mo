@@ -11,50 +11,50 @@ This workspace includes production-ready applications, educational implementatio
 ### **Blockchain Applications & dApps**
 
 #### Counter dApp
-- **Location**: `counter/`, `counter-dapp/`
+- **Location**: [counter/](counter/), [counter-dapp/](counter-dapp/)
 - **Purpose**: Introductory smart contract and frontend for learning Stacks development
 - **Stack**: Clarity (contracts), React + Vite (frontend), TypeScript
 
 #### Payment dApp
-- **Location**: `payment-dapp/`
+- **Location**: [payment-dapp/](payment-dapp/)
 - **Purpose**: Payment processing interface on Stacks blockchain
 - **Stack**: React + Vite, TailwindCSS, Stacks integration
 
 #### StackPay Application
-- **Location**: `stackpay/`, `stackpay-app/`
+- **Location**: [stackpay/](stackpay/), [stackpay-app/](stackpay-app/)
 - **Purpose**: Merchant dashboard and payment platform powered by Stacks
-- **Features**: Onboarding, invoice management, wallet integration, real-time transaction tracking
+- **Features**: Onboarding, invoice management, wallet integration, real-time transaction tracking, escrow management
 - **Tech Stack**: Clarity smart contracts, React + Vite, TailwindCSS, Supabase backend
-- **Documentation**: See [stackpay-app/README.md](stackpay-app/README.md)
+- **Documentation**: [stackpay-app/README.md](stackpay-app/README.md)
 
 #### Secret Wisher dApp
-- **Location**: `secret-wisher/`, `secret-wisher-dapp/`
+- **Location**: [secret-wisher/](secret-wisher/), [secret-wisher-dapp/](secret-wisher-dapp/)
 - **Purpose**: Decentralized wishlist/gifting application on Stacks
 - **Stack**: Clarity contracts, React + Vite frontend
 
 #### Timelock Contracts
-- **Location**: `timelock/`
+- **Location**: [timelock/](timelock/)
 - **Purpose**: Time-locked smart contracts for scheduled transactions
 - **Stack**: Clarity smart contracts
 
 #### Token System
-- **Location**: `my-token/`
+- **Location**: [my-token/](my-token/)
 - **Purpose**: Custom token implementation on Stacks
 - **Stack**: Clarity SIP-010 token standard
 
 #### Tic-Tac-Toe Game
-- **Location**: `tic-tac-toe/`
+- **Location**: [tic-tac-toe/](tic-tac-toe/)
 - **Purpose**: On-chain game implementation
 - **Stack**: Clarity smart contracts, test suite
 
 #### Hello World
-- **Location**: `hello-world/`
+- **Location**: [hello-world/](hello-world/)
 - **Purpose**: Minimal Stacks smart contract starter template
 
 ### **Backend Services**
 
 #### Backend Server
-- **Location**: `backend/`
+- **Location**: [backend/](backend/)
 - **Purpose**: API server and blockchain indexing service
 - **Stack**: TypeScript/Node.js
 - **Features**: Chainhook integration, contract event monitoring, type definitions
@@ -63,35 +63,32 @@ This workspace includes production-ready applications, educational implementatio
 
 ## 🔐 Cryptographic & Zero-Knowledge Proof Implementations
 
-Pure Rust implementations of core ZK primitives and polynomial operations:
+Pure Rust implementations of core ZK primitives and polynomial operations. These modules focus on **first-principles understanding** with emphasis on correctness and clarity.
 
-### `fft/` – Fast Fourier Transform
+### [fft/](fft/) – Fast Fourier Transform
 Efficient polynomial evaluation and multiplication over finite fields.
 
 **Includes**: Recursive FFT, inverse FFT, polynomial multiplication
 
-### `univariate_poly/` – Univariate Polynomials
+### [univariate_poly/](univariate_poly/) – Univariate Polynomials
 Core polynomial operations over prime fields: arithmetic, evaluation, interpolation
 
-### `multivariate_poly/` – Multivariate Polynomials
+### [multivariate_poly/](multivariate_poly/) – Multivariate Polynomials
 Multilinear extensions and multi-variable polynomial operations
 
-### `shamir_secret_sharing/` – Threshold Cryptography
+### [shamir_secret_sharing/](shamir_secret_sharing/) – Threshold Cryptography
 Polynomial-based secret sharing with finite-field arithmetic
 
-### `sum_check/` – Sum-Check Protocol
+### [sum_check/](sum_check/) – Sum-Check Protocol
 Interactive proof protocol for multilinear polynomial evaluation
 
 **Used in**: GKR protocols, efficient proof systems
 
-### `gkr/` – Goldwasser–Kalai–Rothblum Protocol
+### [gkr/](gkr/) – Goldwasser–Kalai–Rothblum Protocol
 Scalable verification of computation over layered arithmetic circuits
 
-### `kzg/` – Kate–Zaverucha–Goldberg Commitments
+### [kzg/](kzg/) – Kate–Zaverucha–Goldberg Commitments
 Polynomial commitment scheme with efficient witness computation
-
-### `lagrange/` – Lagrange Interpolation
-Standalone implementation of Lagrange interpolation over finite fields
 
 ---
 
@@ -99,7 +96,7 @@ Standalone implementation of Lagrange interpolation over finite fields
 
 ### For dApp Development
 
-Each dApp has its own setup instructions. Example:
+Each dApp has its own setup instructions:
 
 ```bash
 cd counter-dapp
@@ -157,143 +154,151 @@ Stack-Mo/
 │   ├── shamir_secret_sharing/ # Secret sharing
 │   ├── sum_check/             # Sum-check protocol
 │   ├── gkr/                   # GKR protocol
-│   ├── kzg/                   # KZG commitments
-│   └── other-implementations/
-└── docs/
-
-Repository Structure
-
-Each Rust directory focuses on a specific primitive or protocol commonly used in zero-knowledge systems.
-
-### `fft/`
-Implementations of the Fast Fourier Transform over suitable fields and domains.
-
-Used for:
-- Polynomial evaluation and interpolation
-- Fast polynomial multiplication
-- Foundations for quotient polynomials in zk systems
-
-Includes:
-- Recursive FFT
-- Inverse FFT
-- Polynomial multiplication via FFT
+│   └── kzg/                   # KZG commitments
+└── README.md
+```
 
 ---
 
-### `univariate_poly/`
-Core univariate polynomial operations over finite fields.
+## 🎯 Key Features
 
-Includes:
-- Polynomial arithmetic
-- Evaluation
-- Interpolation
-- Utilities reused across multiple protocols
+### Blockchain Integration
+- **Stacks Smart Contracts**: Full-featured Clarity contracts with testing suites
+- **Real-World dApps**: Production-ready applications including payment processing and merchant dashboards
+- **Backend Services**: TypeScript/Node.js API with blockchain event indexing via Chainhook
+- **Wallet Integration**: Wallet setup and transaction management
+- **Escrow Management**: Secure payment and service delivery workflows
 
----
-
-### `multivariate_poly/`
-Multivariate polynomial representations and operations.
-
-Relevant for:
-- Multilinear extensions
-- Sum-check protocol
-- GKR-style protocols
+### Cryptographic Research
+- **Educational Focus**: Clear, well-documented implementations prioritizing understanding over optimization
+- **From-First-Principles**: Building blocks without relying on black-box cryptographic libraries
+- **Production Quality**: Rust implementations with full test coverage for ZK primitives
 
 ---
 
-### `lagrange interpolation over prime fields/`
-Standalone implementations of Lagrange interpolation over finite fields.
+## 💡 Use Cases
 
-Used for:
-- Polynomial reconstruction from evaluations
-- Foundations for commitments and proof systems
-
----
-
-### `shamir_secret_sharing/`
-Implementation of Shamir’s Secret Sharing scheme.
-
-Covers:
-- Polynomial-based secret sharing
-- Threshold reconstruction
-- Finite-field arithmetic
-
-Serves as an early bridge between polynomial algebra and cryptographic protocols.
+1. **Learning Stacks Development** – Start with counter-dapp, timelock, or tic-tac-toe
+2. **Building Payment Systems** – Reference StackPay for a complete merchant platform
+3. **Understanding ZK Proofs** – Explore FFT, KZG, GKR, and sum-check implementations
+4. **Smart Contract Integration** – Use backend services for blockchain event monitoring
 
 ---
 
-### `sum_check/`
-Implementation of the Sum-Check protocol.
+## 📖 Documentation
 
-Used in:
-- GKR
-- Multilinear polynomial verification
-- Interactive proof systems
-
-Includes:
-- Iterative sum-check rounds
-- Polynomial reductions
-- Verifier checks
+| Project | Documentation |
+|---------|---------------|
+| StackPay | [stackpay-app/README.md](stackpay-app/README.md) |
+| Payment dApp | [payment-dapp/README.md](payment-dapp/README.md) |
+| Counter | [counter/](counter/) contracts and tests |
+| Backend | [backend/](backend/) API and indexing |
 
 ---
 
-### `gkr/`
-Implementation of the Goldwasser–Kalai–Rothblum (GKR) protocol.
+## 🛠️ Technology Stack
 
-Focuses on:
-- Verifying computations over layered arithmetic circuits
-- Combining sum-check with polynomial techniques
-- Scalable verification of computation
+### Frontend
+- React 18+
+- TypeScript
+- Vite (build tool)
+- TailwindCSS
+- Zustand / React Query (state management)
 
----
+### Smart Contracts
+- Clarity (Stacks)
+- Vitest (testing)
 
-### `kzg/`
-Implementations related to the Kate–Zaverucha–Goldberg (KZG) polynomial commitment scheme.
+### Backend & Services
+- Node.js + TypeScript
+- Supabase (auth & database)
+- Chainhook (blockchain indexing)
 
-Includes:
-- Univariate KZG commitments
-- Multilinear KZG constructions
-- Witness computation and verification logic
-
-This module connects polynomial algebra directly to cryptographic commitments and pairings.
-
----
-
-### `impl simple circuit/`
-Early experiments with representing and evaluating arithmetic circuits.
-
-Used to:
-- Ground abstract protocols in concrete computation
-- Prepare for circuit-based proof systems and arithmetization
+### Cryptography
+- Rust
+- Finite field arithmetic
+- Polynomial mathematics
 
 ---
 
-## Goals of This Repository
+## 🚦 Project Maturity
 
-- Build zero-knowledge primitives from scratch
-- Understand how algebra, polynomials, and cryptography connect
-- Explore how FFTs, commitments, and interactive proofs fit together
-- Serve as a long-term reference while studying zk systems
-
-This is **not** a production library.  
-Correctness, clarity, and understanding take priority over optimization.
+| Status | Projects |
+|--------|----------|
+| **Production Ready** | StackPay, Counter, Payment dApp |
+| **In Development** | Secret Wisher, Timelock enhancements |
+| **Educational/Research** | ZK proof implementations, cryptographic primitives |
 
 ---
 
-## Planned / Future Additions
+## 📝 Philosophy
 
-Possible future work includes:
-- FFT-based polynomial division
-- Multi-point KZG openings
-- PLONK-style quotient polynomial construction
-- Lookup arguments
-- Constraint systems and arithmetization
-- Comparisons with STARK-style constructions
+### For Web3 Projects
+- Prioritize security and user experience
+- Ensure blockchain integration is clear and maintainable
+- Provide comprehensive testing
+- Create seamless onboarding workflows
+
+### For Cryptographic Implementations
+- Correctness and clarity over premature optimization
+- Educational value and understanding over performance
+- Full documentation and test coverage
+- From-first-principles approach
 
 ---
 
-## Notes
+## 🔄 Development Workflow
 
-- Most modules assume familiarity with finite fields and basic cryptography
-- Implementations may change as understanding improves
-- Some code intentionally favors clarity over performance
+1. **Smart Contracts**: Write in Clarity, test with Vitest
+2. **Frontend**: Build with React + Vite, style with TailwindCSS
+3. **Backend**: TypeScript services with Supabase integration and Chainhook monitoring
+4. **Deployment**: Vercel/Netlify for frontends, Stacks testnet/mainnet for contracts
+
+---
+
+## 📋 Notable Implementation Details
+
+- **FFT Module**: Optimized polynomial multiplication for cryptographic proofs
+- **KZG Commitments**: Efficient batch verification capabilities
+- **GKR Protocol**: Circuit-based computation verification with sum-check
+- **StackPay Architecture**: Complete end-to-end merchant payment workflow with escrow management
+- **Backend Indexing**: Real-time blockchain event monitoring via Chainhook
+
+---
+
+## ⚠️ Important Notes
+
+- **Cryptographic implementations** prioritize clarity; conduct security audits before production use
+- **Smart contracts** have been tested but always perform thorough audits before mainnet deployment
+- Implementations evolve as understanding improves
+- Some code intentionally favors clarity and understandability over performance
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please ensure:
+1. Code follows project conventions
+2. Tests are included and pass
+3. Documentation is updated
+4. Security best practices are followed for contracts
+
+---
+
+## 📚 Additional Resources
+
+- [Stacks Documentation](https://docs.stacks.co)
+- [Clarity Language Reference](https://docs.stacks.co/clarity)
+- [ZK Proof Fundamentals](https://zkproofs.com)
+- [Vite Documentation](https://vitejs.dev)
+- [Rust Book](https://doc.rust-lang.org/book/)
+
+---
+
+## 📄 License
+
+See individual project directories for specific licensing information.
+
+---
+
+**Last Updated**: January 2026
