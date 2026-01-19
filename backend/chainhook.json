@@ -1,0 +1,20 @@
+{
+  "name": "ccounter-hook",
+  "uuid": "ccounter-uuid",
+  "chain": "stacks",
+  "version": 1,
+  "networks": {
+    "mainnet": {
+      "if_this": {
+        "scope": "print_event",
+        "contract_identifier": "SP13J1C3K69H3EDG2SVJ21SQ6GXD6A6F860HWK3ZJ.counter",
+        "contains": "counter"
+      },
+      "then_that": {
+        "http_post": {
+          "url": "http://localhost:3000/api/webhook"
+        }
+      }
+    }
+  }
+}
