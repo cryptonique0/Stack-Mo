@@ -1,0 +1,29 @@
+---
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - requirement-publish:
+            contract-id: SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard
+            remap-sender: ST2A2DJN1S6CPYDR5T00RBNNQKV6XZDKQDFJTYW1V
+            remap-principals:
+              SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE: ST2A2DJN1S6CPYDR5T00RBNNQKV6XZDKQDFJTYW1V
+            cost: 8400
+            path: "./.cache/requirements/SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
+            clarity-version: 1
+      epoch: "2.0"
+    - id: 1
+      transactions:
+        - contract-publish:
+            contract-name: psalmuel
+            expected-sender: ST2A2DJN1S6CPYDR5T00RBNNQKV6XZDKQDFJTYW1V
+            cost: 11980
+            path: contracts/psalmuel.clar
+            anchor-block-only: true
+            clarity-version: 3
+      epoch: "3.1"
