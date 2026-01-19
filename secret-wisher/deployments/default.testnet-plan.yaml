@@ -1,0 +1,18 @@
+---
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: secret-wisher
+            expected-sender: ST2A2DJN1S6CPYDR5T00RBNNQKV6XZDKQDFJTYW1V
+            cost: 34560
+            path: contracts/secret-wisher.clar
+            anchor-block-only: true
+            clarity-version: 3
+      epoch: "3.1"
