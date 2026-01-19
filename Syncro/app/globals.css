@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Updated to Mailchimp color palette */
+  --background: #f9f6f2; /* Off-white Cream */
+  --foreground: #1e2a35; /* Deep Navy */
+  --card: #ffffff;
+  --card-foreground: #1e2a35;
+  --popover: #ffffff;
+  --popover-foreground: #1e2a35;
+  --primary: #1e2a35; /* Deep Navy */
+  --primary-foreground: #ffffff;
+  --secondary: #ffd166; /* Warm Mustard */
+  --secondary-foreground: #1e2a35;
+  --muted: #f9f6f2;
+  --muted-foreground: #6b7280;
+  --accent: #e86a33; /* Terracotta */
+  --accent-foreground: #ffffff;
+  --success: #007a5c; /* Forest Green */
+  --success-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #ffd166;
+  --chart-1: #1e2a35;
+  --chart-2: #ffd166;
+  --chart-3: #e86a33;
+  --chart-4: #007a5c;
+  --chart-5: #6b7280;
+  --radius: 0.75rem; /* 12px - Mailchimp style */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1e2a35;
+  --sidebar-primary: #1e2a35;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f9f6f2;
+  --sidebar-accent-foreground: #1e2a35;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #ffd166;
+}
+
+.dark {
+  --background: #1e2a35;
+  --foreground: #f9f6f2;
+  --card: #2d3748;
+  --card-foreground: #f9f6f2;
+  --popover: #2d3748;
+  --popover-foreground: #f9f6f2;
+  --primary: #ffd166;
+  --primary-foreground: #1e2a35;
+  --secondary: #e86a33;
+  --secondary-foreground: #ffffff;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #e86a33;
+  --accent-foreground: #ffffff;
+  --success: #007a5c;
+  --success-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #374151;
+  --input: #374151;
+  --ring: #ffd166;
+  --chart-1: #ffd166;
+  --chart-2: #e86a33;
+  --chart-3: #007a5c;
+  --chart-4: #9ca3af;
+  --chart-5: #6b7280;
+  --sidebar: #2d3748;
+  --sidebar-foreground: #f9f6f2;
+  --sidebar-primary: #ffd166;
+  --sidebar-primary-foreground: #1e2a35;
+  --sidebar-accent: #374151;
+  --sidebar-accent-foreground: #f9f6f2;
+  --sidebar-border: #374151;
+  --sidebar-ring: #ffd166;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Accessibility improvements */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Focus visible styles for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Mobile touch targets - minimum 44x44px */
+  @media (max-width: 768px) {
+    button,
+    a,
+    input[type="checkbox"],
+    input[type="radio"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Browser compatibility - flexbox prefixes */
+  .flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  /* Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
