@@ -1,168 +1,146 @@
-# Foundry Cross Chain Rebase Token
+# Zero-Knowledge Proofs – Study & Implementations
 
-This is a section of the Cyfrin Foundry Solidity course.
+This repository contains my ongoing work studying and implementing the core mathematical and cryptographic building blocks behind modern zero-knowledge proof systems (SNARKs, PLONK-style systems, and related protocols).
 
-# About
+The focus is on **first-principles implementations**: understanding the algebra and protocols deeply rather than relying on black-box libraries.
 
-This project is a cross-chain rebase token where users can depost ETH in exchange for rebase tokens which accrue rewards over time.
+The code here is exploratory, educational, and evolves as my understanding improves.
 
-- [Foundry Cross Chain Rebase Token](#foundry-cross-chain-rebase-token)
-- [About](#about)
-- [Getting Started](#getting-started)
-  - [Requirements](#requirements)
-  - [Quickstart](#quickstart)
-- [Updates](#updates)
-- [Usage](#usage)
-  - [Start a local node](#start-a-local-node)
-  - [Deploy](#deploy)
-  - [Deploy - Other Network](#deploy---other-network)
-  - [Testing](#testing)
-    - [Test Coverage](#test-coverage)
-- [Deployment to a testnet or mainnet](#deployment-to-a-testnet-or-mainnet)
-  - [Scripts](#scripts)
-  - [Estimate gas](#estimate-gas)
-- [Formatting](#formatting)
-- [Thank you!](#thank-you)
+---
 
-# Getting Started
+## Repository Structure
 
-## Requirements
+Each directory focuses on a specific primitive or protocol commonly used in zero-knowledge systems.
 
-- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-  - You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
-- [foundry](https://getfoundry.sh/)
-  - You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.2.0 (816e00b 2023-03-16T00:05:26.396218Z)`
+### `fft/`
+Implementations of the Fast Fourier Transform over suitable fields and domains.
 
-## Quickstart
+Used for:
+- Polynomial evaluation and interpolation
+- Fast polynomial multiplication
+- Foundations for quotient polynomials in zk systems
 
-```
-git clone https://github.com/Cyfrin/foundry-cross-chain-rebase-token-cu
-cd foundry-cross-chain-rebase-token-cu
-forge build
-```
+Includes:
+- Recursive FFT
+- Inverse FFT
+- Polynomial multiplication via FFT
 
-# Updates
+---
 
-# Usage
+### `univariate_poly/`
+Core univariate polynomial operations over finite fields.
 
-## Start a local node
+Includes:
+- Polynomial arithmetic
+- Evaluation
+- Interpolation
+- Utilities reused across multiple protocols
 
-```
-make anvil
-```
+---
 
-## Deploy
+### `multivariate_poly/`
+Multivariate polynomial representations and operations.
 
-This will default to your local node. You need to have it running in another terminal in order for it to deploy.
+Relevant for:
+- Multilinear extensions
+- Sum-check protocol
+- GKR-style protocols
 
-```
-make deploy
-```
+---
 
-## Deploy - Other Network
+### `lagrange interpolation over prime fields/`
+Standalone implementations of Lagrange interpolation over finite fields.
 
-[See below](#deployment-to-a-testnet-or-mainnet)
+Used for:
+- Polynomial reconstruction from evaluations
+- Foundations for commitments and proof systems
 
-## Testing
+---
 
-We talk about 4 test tiers on Updraft:
+### `shamir_secret_sharing/`
+Implementation of Shamir’s Secret Sharing scheme.
 
-1. Unit
-2. Integration
-3. Forked
-4. Staging
+Covers:
+- Polynomial-based secret sharing
+- Threshold reconstruction
+- Finite-field arithmetic
 
-In this repo we cover #1 and Fuzzing.
+Serves as an early bridge between polynomial algebra and cryptographic protocols.
 
-```
-forge test
-```
+---
 
-### Testing Coverage
+### `sum_check/`
+Implementation of the Sum-Check protocol.
 
-```
-forge coverage
-```
+Used in:
+- GKR
+- Multilinear polynomial verification
+- Interactive proof systems
 
-and for coverage based testing:
+Includes:
+- Iterative sum-check rounds
+- Polynomial reductions
+- Verifier checks
 
-```
-forge coverage --report debug
-```
+---
 
-# Deployment to a testnet or mainnet
+### `gkr/`
+Implementation of the Goldwasser–Kalai–Rothblum (GKR) protocol.
 
-1. Setup environment variables
+Focuses on:
+- Verifying computations over layered arithmetic circuits
+- Combining sum-check with polynomial techniques
+- Scalable verification of computation
 
-You'll want to set your `SEPOLIA_RPC_URL` and `PRIVATE_KEY` as environment variables. You can add them to a `.env` file, similar to what you see in `.env.example`.
+---
 
-- `PRIVATE_KEY`: The private key of your account (like from [metamask](https://metamask.io/)). **NOTE:** FOR DEVELOPMENT, PLEASE USE A KEY THAT DOESN'T HAVE ANY REAL FUNDS ASSOCIATED WITH IT.
-  - You can [learn how to export it here](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key).
-- `SEPOLIA_RPC_URL`: This is url of the sepolia testnet node you're working with. You can get setup with one for free from [Alchemy](https://alchemy.com/?a=673c802981)
+### `kzg/`
+Implementations related to the Kate–Zaverucha–Goldberg (KZG) polynomial commitment scheme.
 
-Optionally, add your `ETHERSCAN_API_KEY` if you want to verify your contract on [Etherscan](https://etherscan.io/).
+Includes:
+- Univariate KZG commitments
+- Multilinear KZG constructions
+- Witness computation and verification logic
 
-1. Get testnet ETH
+This module connects polynomial algebra directly to cryptographic commitments and pairings.
 
-Head over to [faucets.chain.link](https://faucets.chain.link/) and get some testnet ETH. You should see the ETH show up in your metamask.
+---
 
-2. Deploy
+### `impl simple circuit/`
+Early experiments with representing and evaluating arithmetic circuits.
 
-```
-make deploy ARGS="--network sepolia"
-```
+Used to:
+- Ground abstract protocols in concrete computation
+- Prepare for circuit-based proof systems and arithmetization
 
-## Scripts
+---
 
-Instead of scripts, we can directly use the `cast` command to interact with the contract.
+## Goals of This Repository
 
-For example, on Sepolia:
+- Build zero-knowledge primitives from scratch
+- Understand how algebra, polynomials, and cryptography connect
+- Explore how FFTs, commitments, and interactive proofs fit together
+- Serve as a long-term reference while studying zk systems
 
-1. Get some RebaseTokens
+This is **not** a production library.  
+Correctness, clarity, and understanding take priority over optimization.
 
-```
-cast send <vault-contract-address> "deposit()" --value 0.1ether --rpc-url $SEPOLIA_RPC_URL --wallet
-```
+---
 
-2. Redeem RebaseTokens for ETH
+## Planned / Future Additions
 
-```
-cast send <vault-contractaddress> "redeem(uint256)" 10000000000000000 --rpc-url $SEPOLIA_RPC_URL --wallet
-```
+Possible future work includes:
+- FFT-based polynomial division
+- Multi-point KZG openings
+- PLONK-style quotient polynomial construction
+- Lookup arguments
+- Constraint systems and arithmetization
+- Comparisons with STARK-style constructions
 
-## Estimate gas
+---
 
-You can estimate how much gas things cost by running:
+## Notes
 
-```
-forge snapshot
-```
-
-And you'll see an output file called `.gas-snapshot`
-
-# Formatting
-
-To run code formatting:
-
-```
-forge fmt
-```
-
-# Thank you!
-
-## Project design and assumptions
-
-WHATEVER INTEREST THEY DEPOSIT WITH, THEY STICK WITH
-
-This project is a cross-chain rebase token that integrates Chainlink CCIP to enable users to bridge their tokens cross-chain
-
-### NOTES
-
-- assumed rewards are in contract
-- Protocol rewards early users and users which bridge to the L2
-  - The interest rate decreases discretely
-  - The interest rate when a user bridges is bridges with them and stays static. So, by bridging you get to keep your high interest rate.
-- You can only deposit and withdraw on the L1.
-- You cannot earn interest in the time while bridging.
-
-Don't forget to bridge back the amount of interest they accrued on the destination chain in that time
+- Most modules assume familiarity with finite fields and basic cryptography
+- Implementations may change as understanding improves
+- Some code intentionally favors clarity over performance
